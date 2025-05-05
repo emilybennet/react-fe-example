@@ -1,6 +1,7 @@
 import React from "react";
 import { TicketType } from "../../types";
 import { formatCurrency } from "../../utils/format";
+import { Input } from "../../components/Input";
 
 type TicketTypeRowProps = TicketType & {
   qty: number;
@@ -24,7 +25,7 @@ export const TicketTypeRow = ({
       <p className="text-xl">{formatCurrency(cost)}</p>
     </div>
 
-    <input
+    <Input
       type="number"
       value={qty}
       onChange={(ev: React.ChangeEvent<HTMLInputElement>) => {

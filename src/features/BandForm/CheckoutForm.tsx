@@ -2,6 +2,8 @@ import React from "react";
 import { TicketType } from "../../types";
 import { TicketTypeRow } from "./TicketTypeRow";
 import { formatCurrency } from "../../utils/format";
+import { Input } from "../../components/Input";
+import { Button } from "../../components/Button";
 
 type CheckoutFormProps = {
   ticketTypes: TicketType[];
@@ -94,26 +96,28 @@ export const CheckoutForm = ({ ticketTypes }: CheckoutFormProps) => {
         <span>{formatCurrency(getSelectedTicketTotal())}</span>
       </p>
 
-      <section id="buyer-info">
+      <section id="buyer-info" className="grid gap-4">
         <h3 className="text-xl font-bold tracking-tight text-gray-900 sm:text-2xl mb-4">
           Contact Details
         </h3>
 
-        <input
-          id="firstName"
-          name="firstName"
-          placeholder="First Name"
-          onChange={handleInputChange}
-          required
-        />
-        <input
-          id="lastName"
-          name="lastName"
-          placeholder="Last Name"
-          onChange={handleInputChange}
-          required
-        />
-        <input
+        <div className="grid grid-cols-2 gap-4">
+          <Input
+            id="firstName"
+            name="firstName"
+            placeholder="First Name"
+            onChange={handleInputChange}
+            required
+          />
+          <Input
+            id="lastName"
+            name="lastName"
+            placeholder="Last Name"
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+        <Input
           id="address"
           name="address"
           placeholder="Address"
@@ -122,11 +126,11 @@ export const CheckoutForm = ({ ticketTypes }: CheckoutFormProps) => {
         />
       </section>
 
-      <section id="payment-info">
+      <section id="payment-info" className="grid gap-4">
         <h3 className="text-xl font-bold tracking-tight text-gray-900 sm:text-2xl mb-4">
           Payment Details
         </h3>
-        <input
+        <Input
           id="cardNumber"
           name="cardNumber"
           placeholder="0000 0000 0000 0000"
@@ -136,27 +140,30 @@ export const CheckoutForm = ({ ticketTypes }: CheckoutFormProps) => {
           minLength={12}
           maxLength={15} // TODO: amex length?
         />
-        <input
-          id="cardExpiry"
-          name="cardExpiry"
-          placeholder="MM/YY"
-          onChange={handleInputChange}
-          inputMode="numeric"
-          required
-        />
-        <input
-          id="cardCvv"
-          name="cardCvv"
-          placeholder="CVV"
-          onChange={handleInputChange}
-          inputMode="numeric"
-          required
-          minLength={3}
-          maxLength={4}
-        />
+
+        <div className="grid grid-cols-2 gap-4">
+          <Input
+            id="cardExpiry"
+            name="cardExpiry"
+            placeholder="MM/YY"
+            onChange={handleInputChange}
+            inputMode="numeric"
+            required
+          />
+          <Input
+            id="cardCvv"
+            name="cardCvv"
+            placeholder="CVV"
+            onChange={handleInputChange}
+            inputMode="numeric"
+            required
+            minLength={3}
+            maxLength={4}
+          />
+        </div>
       </section>
 
-      <button type="submit">Get Tickets</button>
+      <Button type="submit">Get Tickets</Button>
     </form>
   );
 };
