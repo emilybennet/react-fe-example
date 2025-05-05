@@ -1,3 +1,4 @@
+import DOMPurify from "dompurify";
 import { CalendarDays, MapPin } from "lucide-react";
 
 import { Band } from "../../types";
@@ -29,10 +30,14 @@ export const BandForm = ({ band }: BandFormProps) => {
 
       <main className="grid grid-cols-2 gap-12">
         <div className="band-info mb-8">
-          <img src={band.imgUrl} alt={band.name} />
+          <img src={band.imgUrl} alt={band.name} className="mb-8" />
 
-          <h2 className="text-2xl font-bold">TODO: SANITIZE THIS DESC</h2>
-          {band.description_blurb}
+          <div
+            className="band-blurb"
+            dangerouslySetInnerHTML={{
+              __html: DOMPurify.sanitize(band.description_blurb),
+            }}
+          />
         </div>
 
         <CheckoutForm ticketTypes={band.ticketTypes} />
