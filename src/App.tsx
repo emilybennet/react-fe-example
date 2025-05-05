@@ -8,6 +8,9 @@ function App() {
   const bands = [skaBand, kpopBand, punkBand];
   return (
     <div className="App">
+      <h1 className="text-3xl text-blue-400 font-bold underline">
+        Hello world!
+      </h1>
       <BandForm band={bands[0]} />
     </div>
   );
