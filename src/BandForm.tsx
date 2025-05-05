@@ -1,4 +1,10 @@
-function BandForm({ band }) {
+import { Band } from "./types";
+
+type BandFormProps = {
+  band: Band;
+};
+
+function BandForm({ band }: BandFormProps) {
   return (
     <div>
       <h1>{band.name}</h1>
