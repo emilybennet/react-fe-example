@@ -6,6 +6,7 @@ import { TicketTypeRow } from "./TicketTypeRow";
 import { formatCurrency } from "../../utils/format";
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
+import { Label } from "../../components/Label";
 
 type CheckoutFormProps = {
   ticketTypes: TicketType[];
@@ -119,69 +120,91 @@ export const CheckoutForm = ({ ticketTypes }: CheckoutFormProps) => {
       </p>
 
       <section id="buyer-info" className="grid gap-4">
-        <h3 className="text-xl font-bold tracking-tight text-gray-900 sm:text-2xl mb-4">
+        <h3 className="text-xl font-bold tracking-tight text-gray-900 sm:text-2xl mb-4 sr-only">
           Contact Details
         </h3>
 
         <div className="grid grid-cols-2 gap-4">
+          <div>
+            <Label htmlFor="firstName">First Name</Label>
+            <Input
+              id="firstName"
+              name="firstName"
+              placeholder="First Name"
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+
+          <div>
+            <Label htmlFor="lastName">Last Name</Label>
+            <Input
+              id="lastName"
+              name="lastName"
+              placeholder="Last Name"
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+        </div>
+
+        <div>
+          <Label htmlFor="address">Address</Label>
           <Input
-            id="firstName"
-            name="firstName"
-            placeholder="First Name"
-            onChange={handleInputChange}
-            required
-          />
-          <Input
-            id="lastName"
-            name="lastName"
-            placeholder="Last Name"
+            id="address"
+            name="address"
+            placeholder="Address"
             onChange={handleInputChange}
             required
           />
         </div>
-        <Input
-          id="address"
-          name="address"
-          placeholder="Address"
-          onChange={handleInputChange}
-          required
-        />
       </section>
 
       <section id="payment-info" className="grid gap-4">
         <h3 className="text-xl font-bold tracking-tight text-gray-900 sm:text-2xl mb-4">
           Payment Details
         </h3>
-        <Input
-          id="cardNumber"
-          name="cardNumber"
-          placeholder="0000 0000 0000 0000"
-          onChange={handleInputChange}
-          inputMode="numeric"
-          required
-          minLength={12}
-          maxLength={15} // TODO: amex length?
-        />
+
+        <div>
+          <Label htmlFor="cardNumber">Card Number</Label>
+          <Input
+            id="cardNumber"
+            name="cardNumber"
+            placeholder="0000 0000 0000 0000"
+            onChange={handleInputChange}
+            inputMode="numeric"
+            required
+            minLength={12}
+            maxLength={15} // TODO: amex length?
+          />
+        </div>
 
         <div className="grid grid-cols-2 gap-4">
-          <Input
-            id="cardExpiry"
-            name="cardExpiry"
-            placeholder="MM/YY"
-            onChange={handleInputChange}
-            inputMode="numeric"
-            required
-          />
-          <Input
-            id="cardCvv"
-            name="cardCvv"
-            placeholder="CVV"
-            onChange={handleInputChange}
-            inputMode="numeric"
-            required
-            minLength={3}
-            maxLength={4}
-          />
+          <div>
+            <Label htmlFor="cardExpiry">Expiry</Label>
+            <Input
+              id="cardExpiry"
+              name="cardExpiry"
+              placeholder="MM/YY"
+              onChange={handleInputChange}
+              inputMode="numeric"
+              required
+            />
+          </div>
+
+          <div>
+            <Label htmlFor="cardCvv">CVV</Label>
+            <Input
+              id="cardCvv"
+              name="cardCvv"
+              placeholder="CVV"
+              onChange={handleInputChange}
+              inputMode="numeric"
+              required
+              minLength={3}
+              maxLength={4}
+            />
+          </div>
         </div>
       </section>
 
