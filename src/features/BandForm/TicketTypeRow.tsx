@@ -15,11 +15,15 @@ export const TicketTypeRow = ({
   qty,
   onQtyChange,
 }: TicketTypeRowProps) => (
-  <div className="border-b pb-4">
-    TicketTypeRow
-    <h3>{name}</h3>
-    <p>{description}</p>
-    <p>{formatCurrency(cost)}</p>
+  <div className="grid grid-cols-[1fr_100px] items-center gap-4 border-b border-b-gray-400 pb-4 sm:pb-8 sm:gap-8">
+    <div>
+      <h3 className="text-xl font-medium tracking-tight text-gray-900 sm:text-2xl mb-4">
+        {name}
+      </h3>
+      <p className="text-base mb-4">{description}</p>
+      <p className="text-xl">{formatCurrency(cost)}</p>
+    </div>
+
     <input
       type="number"
       value={qty}

@@ -8,7 +8,6 @@ type CheckoutFormProps = {
 };
 
 export const CheckoutForm = ({ ticketTypes }: CheckoutFormProps) => {
-  console.log(ticketTypes);
   const initTickets = ticketTypes.reduce((acc, cur) => {
     acc[cur.type] = { qty: 0, cost: cur.cost };
     return acc;
@@ -71,10 +70,15 @@ export const CheckoutForm = ({ ticketTypes }: CheckoutFormProps) => {
   };
 
   return (
-    <form onSubmit={handleSumbit} className="grid gap-8">
-      <h2 className="text-2xl font-bold">Select Tickets</h2>
+    <form
+      onSubmit={handleSumbit}
+      className="grid gap-8 bg-gray-50 rounded-lg ring-1 ring-gray-950/10 px-4 py-8 sm:px-6 lg:max-w-7xl lg:px-8 lg:py-12"
+    >
+      <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl mb-4">
+        Select Tickets
+      </h2>
 
-      <section id="ticket-types">
+      <section id="ticket-types" className="grid gap-4 sm:gap-8">
         {ticketTypes.map((t) => (
           <TicketTypeRow
             key={t.type}
@@ -85,12 +89,16 @@ export const CheckoutForm = ({ ticketTypes }: CheckoutFormProps) => {
         ))}
       </section>
 
-      <p>
+      <p className="text-2xl flex justify-between">
         <span>Total</span>
         <span>{formatCurrency(getSelectedTicketTotal())}</span>
       </p>
 
       <section id="buyer-info">
+        <h3 className="text-xl font-bold tracking-tight text-gray-900 sm:text-2xl mb-4">
+          Contact Details
+        </h3>
+
         <input
           id="firstName"
           name="firstName"
@@ -115,6 +123,9 @@ export const CheckoutForm = ({ ticketTypes }: CheckoutFormProps) => {
       </section>
 
       <section id="payment-info">
+        <h3 className="text-xl font-bold tracking-tight text-gray-900 sm:text-2xl mb-4">
+          Payment Details
+        </h3>
         <input
           id="cardNumber"
           name="cardNumber"

@@ -20,3 +20,11 @@ export const formatCurrency = (
 
   return output;
 };
+
+export const formatDisplayDate = (unixTimestamp: number) =>
+  new Date(unixTimestamp).toLocaleDateString("en-US", {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+    year: "numeric", // Not in mock, but more accessible?
+  });
