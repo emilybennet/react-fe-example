@@ -1,4 +1,6 @@
 import React from "react";
+import { TriangleAlert } from "lucide-react";
+
 import { TicketType } from "../../types";
 import { TicketTypeRow } from "./TicketTypeRow";
 import { formatCurrency } from "../../utils/format";
@@ -15,6 +17,7 @@ export const CheckoutForm = ({ ticketTypes }: CheckoutFormProps) => {
     return acc;
   }, {} as Record<string, { qty: number; cost: number }>);
 
+  const [errors, setErrors] = React.useState<Record<string, string>>({});
   const [selectedTickets, setSelectedTickets] = React.useState(initTickets);
   const [form, setForm] = React.useState({
     firstName: "",
@@ -28,6 +31,9 @@ export const CheckoutForm = ({ ticketTypes }: CheckoutFormProps) => {
   const handleSumbit = (ev: React.FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
 
+    // Reset Errors.
+    setErrors({});
+
     console.log("form submitted!");
     const filteredTickets = Object.entries(selectedTickets).reduce(
       (acc, [type, ticket]) => {
@@ -36,6 +42,16 @@ export const CheckoutForm = ({ ticketTypes }: CheckoutFormProps) => {
       },
       {} as Record<string, number>
     );
+
+    console.log(filteredTickets);
+
+    // Quick check to confirm at least 1 ticket is being bought.
+    if (Object.keys(filteredTickets).length < 1) {
+      setErrors({ ticketTypes: "Please select at least 1 ticket." });
+      console.error("No ticket types selected!");
+      return;
+    }
+
     const payload = {
       tickets: filteredTickets,
       buyer: {
@@ -76,9 +92,15 @@ export const CheckoutForm = ({ ticketTypes }: CheckoutFormProps) => {
       onSubmit={handleSumbit}
       className="grid gap-8 bg-gray-50 rounded-lg ring-1 ring-gray-950/10 px-4 py-8 sm:px-6 lg:max-w-7xl lg:px-8 lg:py-12"
     >
-      <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl mb-4">
+      <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
         Select Tickets
       </h2>
+
+      {errors.ticketTypes && (
+        <p className="flex gap-2 items-center text-red-600">
+          <TriangleAlert /> {errors.ticketTypes}
+        </p>
+      )}
 
       <section id="ticket-types" className="grid gap-4 sm:gap-8">
         {ticketTypes.map((t) => (

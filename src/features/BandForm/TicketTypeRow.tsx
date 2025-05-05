@@ -28,6 +28,7 @@ export const TicketTypeRow = ({
     <Input
       type="number"
       value={qty}
+      min={0}
       onChange={(ev: React.ChangeEvent<HTMLInputElement>) => {
         const val = parseInt(ev.target.value, 10);
         onQtyChange(type, val);
