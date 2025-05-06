@@ -35,7 +35,6 @@ export const CheckoutForm = ({ ticketTypes }: CheckoutFormProps) => {
     // Reset Errors.
     setErrors({});
 
-    console.log("form submitted!");
     const filteredTickets = Object.entries(selectedTickets).reduce(
       (acc, [type, ticket]) => {
         if (ticket.qty > 0) acc[type] = ticket.qty;
@@ -43,8 +42,6 @@ export const CheckoutForm = ({ ticketTypes }: CheckoutFormProps) => {
       },
       {} as Record<string, number>
     );
-
-    console.log(filteredTickets);
 
     // Quick check to confirm at least 1 ticket is being bought.
     if (Object.keys(filteredTickets).length < 1) {
@@ -66,7 +63,9 @@ export const CheckoutForm = ({ ticketTypes }: CheckoutFormProps) => {
         cardCvv: form.cardCvv,
       },
     };
+    console.log("Form submitted!");
     console.log(payload);
+    alert("TODO: Transmit data to backend, see dev console for payload.");
   };
 
   const handleInputChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
@@ -102,7 +101,7 @@ export const CheckoutForm = ({ ticketTypes }: CheckoutFormProps) => {
           id="ticket-qty-error"
           className="flex gap-2 items-center text-red-600"
         >
-          <TriangleAlert /> {errors.ticketTypes}
+          <TriangleAlert aria-hidden="true" /> {errors.ticketTypes}
         </p>
       )}
 
