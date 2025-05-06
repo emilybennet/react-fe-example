@@ -18,11 +18,11 @@ export const BandForm = ({ band }: BandFormProps) => {
         </h1>
         <ul className="text-base text-gray-600">
           <li className="flex gap-2 mb-2">
-            <CalendarDays />
+            <CalendarDays aria-hidden="true" />
             {formatDisplayDate(band.date)}
           </li>
           <li className="flex gap-2">
-            <MapPin />
+            <MapPin aria-hidden="true" />
             {band.location}
           </li>
         </ul>

@@ -6,6 +6,7 @@ import { Input } from "../../components/Input";
 type TicketTypeRowProps = TicketType & {
   qty: number;
   onQtyChange: (type: string, qty: number) => void;
+  hasQtyError?: boolean;
 };
 
 export const TicketTypeRow = ({
@@ -15,6 +16,7 @@ export const TicketTypeRow = ({
   cost,
   qty,
   onQtyChange,
+  hasQtyError,
 }: TicketTypeRowProps) => (
   <div className="grid grid-cols-[1fr_100px] items-center gap-4 border-b border-b-gray-400 pb-4 sm:pb-8 sm:gap-8">
     <div>
@@ -33,6 +35,9 @@ export const TicketTypeRow = ({
         const val = parseInt(ev.target.value, 10);
         onQtyChange(type, val);
       }}
+      aria-label={`Ticket Quantity for ${name}`}
+      aria-invalid={hasQtyError}
+      aria-describedby={hasQtyError ? "ticket-qty-error" : undefined}
     />
   </div>
 );

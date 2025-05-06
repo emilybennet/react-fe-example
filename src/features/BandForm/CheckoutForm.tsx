@@ -98,7 +98,10 @@ export const CheckoutForm = ({ ticketTypes }: CheckoutFormProps) => {
       </h2>
 
       {errors.ticketTypes && (
-        <p className="flex gap-2 items-center text-red-600">
+        <p
+          id="ticket-qty-error"
+          className="flex gap-2 items-center text-red-600"
+        >
           <TriangleAlert /> {errors.ticketTypes}
         </p>
       )}
