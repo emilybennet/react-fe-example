@@ -4,7 +4,7 @@ An example UI built with React and Tailwind, scaffolded using Create React App.
 
 ## Code + demo
 
-The code for this project can be found on GitHub at [https://github.com/emilybennet/react-fe-example](https://github.com/emilybennet/react-fe-example), and a live demo is available via GitHub Pages at [XYZ].
+The code for this project can be found on GitHub at [https://github.com/emilybennet/react-fe-example](https://github.com/emilybennet/react-fe-example), and a live demo is available via GitHub Pages at [https://emilybennet.github.io/react-fe-example/](https://emilybennet.github.io/react-fe-example/).
 
 ## To hack on it
 
