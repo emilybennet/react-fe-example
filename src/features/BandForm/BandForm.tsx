@@ -11,7 +11,7 @@ type BandFormProps = {
 
 export const BandForm = ({ band }: BandFormProps) => {
   return (
-    <div className="mx-auto max-w-2xl px-4 pb-24 pt-16 sm:px-6 lg:max-w-7xl lg:px-8">
+    <div className="mx-auto max-w-2xlZ w-full px-4 pb-24 pt-16 sm:px-6 lg:max-w-7xl lg:px-8">
       <header className="mb-8">
         <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl mb-4">
           {band.name}
@@ -28,7 +28,7 @@ export const BandForm = ({ band }: BandFormProps) => {
         </ul>
       </header>
 
-      <main className="grid grid-cols-2 gap-12">
+      <main className="grid md:grid-cols-2 gap-4 lg:gap-12">
         <div className="band-info mb-8">
           <img src={band.imgUrl} alt={band.name} className="mb-8" />
 
